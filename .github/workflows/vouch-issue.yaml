@@ -1,26 +1,19 @@
 on:
-  issue_comment:
-    types: [created]
-concurrency:
-  group: vouch-manage
-  cancel-in-progress: false
+  issues:
+    types: [opened, reopened]
 
 permissions:
-  contents: write
+  contents: read
   issues: write
-  pull-requests: read
 
 jobs:
-  manage:
+  check:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v7
-
-      - uses: mitchellh/vouch/action/manage-by-issue@v1
+      - uses: mitchellh/vouch/action/check-issue@v1
         with:
-          repo: ${{ github.repository }}
-          issue-id: ${{ github.event.issue.number }}
-          comment-id: ${{ github.event.comment.id }}
+          issue-number: ${{ github.event.issue.number }}
+          auto-close: true
           vouched-managers-repo: "OpenGamingCollective/ogc-vouch"
           vouched-managers-file: "VOUCHED.td"
         env:
