@@ -14,7 +14,7 @@ jobs:
         with:
           issue-number: ${{ github.event.issue.number }}
           auto-close: true
-          vouched-managers-repo: "OpenGamingCollective/ogc-vouch"
-          vouched-managers-file: "VOUCHED.td"
+          vouched-repo: "OpenGamingCollective/ogc-vouch"
+          vouched-file: "VOUCHED.td"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
